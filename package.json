@@ -1,0 +1,39 @@
+{
+	"name": "create-html-element",
+	"version": "0.0.0",
+	"description": "Create a HTML element string",
+	"license": "MIT",
+	"repository": "sindresorhus/create-html-element",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=4"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"html",
+		"element",
+		"create",
+		"el",
+		"document",
+		"string",
+		"make",
+		"tag"
+	],
+	"dependencies": {
+		"html-tags": "^2.0.0",
+		"stringify-attributes": "^1.0.0"
+	},
+	"devDependencies": {
+		"ava": "*",
+		"xo": "*"
+	}
+}
