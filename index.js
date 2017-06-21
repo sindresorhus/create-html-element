@@ -8,13 +8,18 @@ module.exports = options => {
 	options = Object.assign({
 		name: 'div',
 		attributes: {},
-		value: ''
+		value: '',
+		selfClose: false
 	}, options);
 
-	let ret = `<${options.name}${stringifyAttributes(options.attributes)}>`;
+	let ret = `<${options.name}${stringifyAttributes(options.attributes)}`;
 
 	if (!voidHtmlTags.has(options.name)) {
 		ret += `${options.value}</${options.name}>`;
+	} else if (options.selfClose) {
+		ret += '/>';
+	} else {
+		ret += '>';
 	}
 
 	return ret;
