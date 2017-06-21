@@ -55,9 +55,11 @@ HTML tag attributes.
 
 HTML tag value.
 
-##### selfClose *(Boolean)*
+##### selfClose
 
-Specify to selfClose void tags or not. *default: false*
+Type: `boolean`<br>
+Default: `false`
+Specify to selfClose void tags or not.
 
 
 
