@@ -55,6 +55,13 @@ HTML tag attributes.
 
 HTML tag value.
 
+##### selfClose
+
+Type: `boolean`<br>
+Default: `false`
+Specify to selfClose void tags or not.
+
+
 
 ## Related
 
