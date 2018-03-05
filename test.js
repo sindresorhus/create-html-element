@@ -12,7 +12,7 @@ test('creates element', t => {
 				number: 1,
 				multiple: ['a', 'b']
 			},
-			value: '🦄'
+			html: '🦄'
 		}),
 		'<h1 class="unicorn" rainbow number="1" multiple="a b">🦄</h1>'
 	);
@@ -30,7 +30,7 @@ test('creates void element', t => {
 			attributes: {
 				foo: 'bar'
 			},
-			value: 'noop'
+			html: 'noop'
 		}),
 		'<img foo="bar">'
 	);
@@ -46,5 +46,12 @@ test('supports boolean and non-string attribute values', t => {
 			}
 		}),
 		'<div foo one="1"></div>'
+	);
+});
+
+test('escapes text content', t => {
+	t.is(
+		m({text: '🦄 & 🐐'}),
+		'<div>🦄 &amp; 🐐</div>'
 	);
 });
