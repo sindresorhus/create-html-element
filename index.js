@@ -12,6 +12,10 @@ module.exports = options => {
 		html: ''
 	}, options);
 
+	if (options.html && options.text) {
+		throw new Error('The `html` and `text` options are mutually exclusive');
+	}
+
 	const content = options.text ? escapeGoat.escape(options.text) : options.html;
 	let ret = `<${options.name}${stringifyAttributes(options.attributes)}>`;
 
