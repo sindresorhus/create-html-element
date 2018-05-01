@@ -24,9 +24,12 @@ createHtmlElement({
 		number: 1,
 		multiple: ['a', 'b']
 	},
-	value: '🦄'
+	html: '🦄'
 });
 //=> '<h1 class="unicorn" rainbow number="1" multiple="a b">🦄</h1>'
+
+createHtmlElement({text: 'Hello <em>World</em>'});
+//=> '<div>Hello &lt;em&gt;World&lt;/em&gt;</div>'
 ```
 
 
@@ -51,9 +54,13 @@ Type: `Object`
 
 HTML tag attributes.
 
-##### value
+##### html
 
-HTML tag value.
+HTML tag value in unescaped HTML. This option is mutually exclusive with the `text` option.
+
+##### text
+
+HTML tag value in escaped HTML. This option is mutually exclusive with the `html` option.
 
 
 ## Related
