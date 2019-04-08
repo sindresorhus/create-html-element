@@ -1,9 +1,9 @@
 import test from 'ava';
-import m from '.';
+import createHtmlElement from '.';
 
 test('creates element', t => {
 	t.is(
-		m({
+		createHtmlElement({
 			name: 'h1',
 			attributes: {
 				class: 'unicorn',
@@ -18,14 +18,14 @@ test('creates element', t => {
 	);
 
 	t.is(
-		m({}),
+		createHtmlElement({}),
 		'<div></div>'
 	);
 });
 
 test('creates void element', t => {
 	t.is(
-		m({
+		createHtmlElement({
 			name: 'img',
 			attributes: {
 				foo: 'bar'
@@ -38,7 +38,7 @@ test('creates void element', t => {
 
 test('supports boolean and non-string attribute values', t => {
 	t.is(
-		m({
+		createHtmlElement({
 			attributes: {
 				foo: true,
 				bar: false,
@@ -51,7 +51,7 @@ test('supports boolean and non-string attribute values', t => {
 
 test('escapes text content', t => {
 	t.is(
-		m({text: '🦄 & 🐐'}),
+		createHtmlElement({text: '🦄 & 🐐'}),
 		'<div>🦄 &amp; 🐐</div>'
 	);
 });

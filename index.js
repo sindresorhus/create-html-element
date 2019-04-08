@@ -17,11 +17,11 @@ module.exports = options => {
 	}
 
 	const content = options.text ? escapeGoat.escape(options.text) : options.html;
-	let ret = `<${options.name}${stringifyAttributes(options.attributes)}>`;
+	let result = `<${options.name}${stringifyAttributes(options.attributes)}>`;
 
 	if (!voidHtmlTags.has(options.name)) {
-		ret += `${content}</${options.name}>`;
+		result += `${content}</${options.name}>`;
 	}
 
-	return ret;
+	return result;
 };
