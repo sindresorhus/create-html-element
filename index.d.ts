@@ -1,11 +1,12 @@
 import {MergeExclusive} from 'type-fest';
+import stringifyAttributes = require('stringify-attributes');
 
 declare namespace createHtmlElement {
 	interface BaseOptions {
 		/**
 		HTML tag attributes.
 		*/
-		attributes?: {[key: string]: string | boolean | number | string[]};
+		attributes?: stringifyAttributes.Attributes;
 
 		/**
 		HTML tag name.

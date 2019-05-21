@@ -39,7 +39,7 @@ createHtmlElement({text: 'Hello <em>World</em>'});
 
 #### options
 
-Type: `Object`
+Type: `object`
 
 ##### name
 
@@ -56,11 +56,15 @@ HTML tag attributes.
 
 ##### html
 
-HTML tag value in unescaped HTML. This option is mutually exclusive with the `text` option.
+HTML tag value in unescaped HTML.
+
+This option is mutually exclusive with the `text` option.
 
 ##### text
 
-HTML tag value in escaped HTML. This option is mutually exclusive with the `html` option.
+HTML tag value in escaped HTML.
+
+This option is mutually exclusive with the `html` option.
 
 
 ## Related
