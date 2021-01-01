@@ -1,4 +1,4 @@
-# create-html-element [![Build Status](https://travis-ci.org/sindresorhus/create-html-element.svg?branch=master)](https://travis-ci.org/sindresorhus/create-html-element)
+# create-html-element
 
 > Create a HTML element string
 
