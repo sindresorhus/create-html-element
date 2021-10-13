@@ -2,18 +2,16 @@
 
 > Create a HTML element string
 
-
 ## Install
 
+```sh
+npm install create-html-element
 ```
-$ npm install create-html-element
-```
-
 
 ## Usage
 
 ```js
-const createHtmlElement = require('create-html-element');
+import createHtmlElement from 'create-html-element';
 
 createHtmlElement({
 	name: 'h1',
@@ -22,7 +20,10 @@ createHtmlElement({
 		rainbow: true,
 		horse: false,
 		number: 1,
-		multiple: ['a', 'b']
+		multiple: [
+			'a',
+			'b'
+		]
 	},
 	html: '🦄'
 });
@@ -31,7 +32,6 @@ createHtmlElement({
 createHtmlElement({text: 'Hello <em>World</em>'});
 //=> '<div>Hello &lt;em&gt;World&lt;/em&gt;</div>'
 ```
-
 
 ## API
 
@@ -43,14 +43,14 @@ Type: `object`
 
 ##### name
 
-Type: `string`<br>
-Default: `div`
+Type: `string`\
+Default: `'div'`
 
 HTML tag name.
 
 ##### attributes
 
-Type: `Object`
+Type: `object`
 
 HTML tag attributes.
 
@@ -66,12 +66,6 @@ HTML tag value in escaped HTML.
 
 This option is mutually exclusive with the `html` option.
 
-
 ## Related
 
 - [stringify-attributes](https://github.com/sindresorhus/stringify-attributes) - Turn an object into a string of HTML attributes
-
-
-## License
-
-MIT © [Sindre Sorhus](https://sindresorhus.com)

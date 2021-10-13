@@ -1,5 +1,5 @@
 import test from 'ava';
-import createHtmlElement from '.';
+import createHtmlElement from './index.js';
 
 test('creates element', t => {
 	t.is(
@@ -10,16 +10,16 @@ test('creates element', t => {
 				rainbow: true,
 				horse: false,
 				number: 1,
-				multiple: ['a', 'b']
+				multiple: ['a', 'b'],
 			},
-			html: '🦄'
+			html: '🦄',
 		}),
-		'<h1 class="unicorn" rainbow number="1" multiple="a b">🦄</h1>'
+		'<h1 class="unicorn" rainbow number="1" multiple="a b">🦄</h1>',
 	);
 
 	t.is(
 		createHtmlElement({}),
-		'<div></div>'
+		'<div></div>',
 	);
 });
 
@@ -28,11 +28,11 @@ test('creates void element', t => {
 		createHtmlElement({
 			name: 'img',
 			attributes: {
-				foo: 'bar'
+				foo: 'bar',
 			},
-			html: 'noop'
+			html: 'noop',
 		}),
-		'<img foo="bar">'
+		'<img foo="bar">',
 	);
 });
 
@@ -42,16 +42,16 @@ test('supports boolean and non-string attribute values', t => {
 			attributes: {
 				foo: true,
 				bar: false,
-				one: 1
-			}
+				one: 1,
+			},
 		}),
-		'<div foo one="1"></div>'
+		'<div foo one="1"></div>',
 	);
 });
 
 test('escapes text content', t => {
 	t.is(
 		createHtmlElement({text: '🦄 & 🐐'}),
-		'<div>🦄 &amp; 🐐</div>'
+		'<div>🦄 &amp; 🐐</div>',
 	);
 });

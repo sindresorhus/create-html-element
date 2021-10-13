@@ -4,13 +4,16 @@
 	"description": "Create a HTML element string",
 	"license": "MIT",
 	"repository": "sindresorhus/create-html-element",
+	"funding": "https://github.com/sponsors/sindresorhus",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
+		"url": "https://sindresorhus.com"
 	},
+	"type": "module",
+	"exports": "./index.js",
 	"engines": {
-		"node": ">=8"
+		"node": "^12.20.0 || ^14.13.1 || >=16.0.0"
 	},
 	"scripts": {
 		"test": "xo && ava && tsd"
@@ -29,14 +32,14 @@
 		"tag"
 	],
 	"dependencies": {
-		"escape-goat": "^2.0.0",
-		"html-tags": "^3.0.0",
-		"stringify-attributes": "^2.0.0",
-		"type-fest": "^0.5.1"
+		"escape-goat": "^4.0.0",
+		"html-tags": "^3.1.0",
+		"stringify-attributes": "^3.0.0",
+		"type-fest": "^2.5.0"
 	},
 	"devDependencies": {
-		"ava": "^1.4.1",
-		"tsd": "^0.7.3",
-		"xo": "^0.24.0"
+		"ava": "^3.15.0",
+		"tsd": "^0.18.0",
+		"xo": "^0.45.0"
 	}
 }

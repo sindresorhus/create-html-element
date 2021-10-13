@@ -1,44 +1,42 @@
 import {MergeExclusive} from 'type-fest';
-import stringifyAttributes = require('stringify-attributes');
+import stringifyAttributes, {HTMLAttributes} from 'stringify-attributes';
 
-declare namespace createHtmlElement {
-	interface BaseOptions {
-		/**
-		HTML tag attributes.
-		*/
-		attributes?: stringifyAttributes.Attributes;
+export interface BaseOptions {
+	/**
+	HTML tag attributes.
+	*/
+	readonly attributes?: HTMLAttributes;
 
-		/**
-		HTML tag name.
+	/**
+	HTML tag name.
 
-		@default 'div'
-		*/
-		name?: string;
-	}
-
-	interface HtmlOptions {
-		/**
-		HTML tag value in unescaped HTML.
-		*/
-		html?: string;
-	}
-
-	interface TextOptions {
-		/**
-		HTML tag value in escaped HTML.
-		*/
-		text?: string;
-	}
-
-	type Options = BaseOptions & MergeExclusive<HtmlOptions, TextOptions>;
+	@default 'div'
+	*/
+	readonly name?: string;
 }
+
+export interface HtmlOptions {
+	/**
+	HTML tag value in unescaped HTML.
+	*/
+	readonly html?: string;
+}
+
+export interface TextOptions {
+	/**
+	HTML tag value in escaped HTML.
+	*/
+	readonly text?: string;
+}
+
+export type Options = BaseOptions & MergeExclusive<HtmlOptions, TextOptions>;
 
 /**
 Create a HTML element string.
 
 @example
 ```
-import createHtmlElement = require('create-html-element');
+import createHtmlElement from 'create-html-element';
 
 createHtmlElement({
 	name: 'h1',
@@ -47,7 +45,10 @@ createHtmlElement({
 		rainbow: true,
 		horse: false,
 		number: 1,
-		multiple: ['a', 'b']
+		multiple: [
+			'a',
+			'b'
+		]
 	},
 	html: '🦄'
 });
@@ -57,6 +58,4 @@ createHtmlElement({text: 'Hello <em>World</em>'});
 //=> '<div>Hello &lt;em&gt;World&lt;/em&gt;</div>'
 ```
 */
-declare function createHtmlElement(options?: createHtmlElement.Options): string;
-
-export = createHtmlElement;
+export default function createHtmlElement(options?: Options): string;

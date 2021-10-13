@@ -1,5 +1,5 @@
 import {expectType, expectError} from 'tsd';
-import createHtmlElement = require('.');
+import createHtmlElement from './index.js';
 
 expectType<string>(createHtmlElement());
 expectType<string>(
@@ -9,9 +9,12 @@ expectType<string>(
 			rainbow: true,
 			horse: false,
 			number: 1,
-			multiple: ['a', 'b']
-		}
-	})
+			multiple: [
+				'a',
+				'b',
+			],
+		},
+	}),
 );
 expectType<string>(createHtmlElement({name: 'foo'}));
 expectType<string>(createHtmlElement({html: '🦄'}));
