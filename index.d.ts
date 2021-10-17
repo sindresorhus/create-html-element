@@ -59,3 +59,5 @@ createHtmlElement({text: 'Hello <em>World</em>'});
 ```
 */
 export default function createHtmlElement(options?: Options): string;
+
+export {HTMLAttributes} from 'stringify-attributes';
