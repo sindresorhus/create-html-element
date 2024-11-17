@@ -1,8 +1,8 @@
 import stringifyAttributes from 'stringify-attributes';
-import htmlTags from 'html-tags/void.js';
+import {voidHtmlTags as voidHtmlTagsArray} from 'html-tags';
 import {htmlEscape} from 'escape-goat';
 
-const voidHtmlTags = new Set(htmlTags);
+const voidHtmlTags = new Set(voidHtmlTagsArray);
 
 export default function createHtmlElement(
 	{
