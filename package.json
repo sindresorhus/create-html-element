@@ -34,7 +34,7 @@
 	"dependencies": {
 		"escape-goat": "^4.0.0",
 		"html-tags": "^4.0.0",
-		"stringify-attributes": "^4.0.1",
+		"stringify-attributes": "^4.0.0",
 		"type-fest": "^4.27.0"
 	},
 	"devDependencies": {
