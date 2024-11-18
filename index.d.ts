@@ -1,7 +1,7 @@
-import {MergeExclusive} from 'type-fest';
-import stringifyAttributes, {HTMLAttributes} from 'stringify-attributes';
+import {type MergeExclusive} from 'type-fest';
+import stringifyAttributes, {type HTMLAttributes} from 'stringify-attributes';
 
-export interface BaseOptions {
+export type BaseOptions = {
 	/**
 	HTML tag attributes.
 	*/
@@ -13,21 +13,21 @@ export interface BaseOptions {
 	@default 'div'
 	*/
 	readonly name?: string;
-}
+};
 
-export interface HtmlOptions {
+export type HtmlOptions = {
 	/**
 	HTML tag value in unescaped HTML.
 	*/
 	readonly html?: string;
-}
+};
 
-export interface TextOptions {
+export type TextOptions = {
 	/**
 	HTML tag value in escaped HTML.
 	*/
 	readonly text?: string;
-}
+};
 
 export type Options = BaseOptions & MergeExclusive<HtmlOptions, TextOptions>;
 
