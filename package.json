@@ -1,6 +1,6 @@
 {
 	"name": "create-html-element",
-	"version": "4.0.1",
+	"version": "5.0.0",
 	"description": "Create a HTML element string",
 	"license": "MIT",
 	"repository": "sindresorhus/create-html-element",
