@@ -58,13 +58,45 @@ HTML tag attributes.
 
 HTML tag value in unescaped HTML.
 
-This option is mutually exclusive with the `text` option.
+This option is mutually exclusive with the `text` and `children` options.
 
 ##### text
 
 HTML tag value in escaped HTML.
 
-This option is mutually exclusive with the `html` option.
+This option is mutually exclusive with the `html` and `children` options.
+
+##### children
+
+Type: `Array<string|object>`
+
+HTML tag children.
+
+Strings are escaped, objects are passed to `createHtmlElement`.
+
+This option is mutually exclusive with the `html` and `text` options.
+
+```js
+import createHtmlElement from 'create-html-element';
+
+createHtmlElement({
+	name: 'div',
+	children: [
+		'<unsafe>',
+		{
+			name: 'iframe',
+			attributes: {
+				src: 'https://example.com'
+			}
+		},
+		{
+			name: 'span',
+			text: 'Label here <em>plz</em>'
+		}
+	]
+});
+//=> '<div>&lt;unsafe&gt;<iframe src="https://example.com"></iframe><span>Label here &lt;em&gt;plz&lt;/em&gt;</span></div>'
+```
 
 ## Related
 

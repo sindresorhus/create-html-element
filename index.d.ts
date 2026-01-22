@@ -29,7 +29,43 @@ export type TextOptions = {
 	readonly text?: string;
 };
 
-export type Options = BaseOptions & MergeExclusive<HtmlOptions, TextOptions>;
+export type ChildrenOptions = {
+	/**
+	HTML tag children.
+
+	Strings are escaped, objects are passed to `createHtmlElement`.
+
+	This option is mutually exclusive with the `html` and `text` options.
+
+	@example
+	```
+	import createHtmlElement from 'create-html-element';
+
+	createHtmlElement({
+		name: 'div',
+		children: [
+			'<unsafe>',
+			{
+				name: 'iframe',
+				attributes: {
+					src: 'https://example.com'
+				}
+			},
+			{
+				name: 'span',
+				text: 'Label here <em>plz</em>'
+			}
+		]
+	});
+	//=> '<div>&lt;unsafe&gt;<iframe src="https://example.com"></iframe><span>Label here &lt;em&gt;plz&lt;/em&gt;</span></div>'
+	```
+	*/
+	readonly children?: readonly Child[];
+};
+
+export type Child = string | (Options & {readonly length?: never});
+
+export type Options = BaseOptions & MergeExclusive<HtmlOptions, MergeExclusive<TextOptions, ChildrenOptions>>;
 
 /**
 Create a HTML element string.
@@ -56,6 +92,24 @@ createHtmlElement({
 
 createHtmlElement({text: 'Hello <em>World</em>'});
 //=> '<div>Hello &lt;em&gt;World&lt;/em&gt;</div>'
+
+createHtmlElement({
+	name: 'div',
+	children: [
+		'<unsafe>',
+		{
+			name: 'iframe',
+			attributes: {
+				src: 'https://example.com'
+			}
+		},
+		{
+			name: 'span',
+			text: 'Label here <em>plz</em>'
+		}
+	]
+});
+//=> '<div>&lt;unsafe&gt;<iframe src="https://example.com"></iframe><span>Label here &lt;em&gt;plz&lt;/em&gt;</span></div>'
 ```
 */
 export default function createHtmlElement(options?: Options): string;
