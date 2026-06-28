@@ -17,7 +17,7 @@
 	},
 	"sideEffects": false,
 	"engines": {
-		"node": "^18.20.0 || >=20.10.0"
+		"node": ">=22"
 	},
 	"scripts": {
 		"test": "xo && ava && tsd"
@@ -37,13 +37,13 @@
 	],
 	"dependencies": {
 		"escape-goat": "^4.0.0",
-		"html-tags": "^4.0.0",
-		"stringify-attributes": "^4.0.0",
-		"type-fest": "^4.27.0"
+		"html-tags": "^5.1.0",
+		"stringify-attributes": "^5.0.0",
+		"type-fest": "^5.7.0"
 	},
 	"devDependencies": {
-		"ava": "^6.2.0",
-		"tsd": "^0.31.2",
-		"xo": "^0.59.3"
+		"ava": "^8.0.1",
+		"tsd": "^0.33.0",
+		"xo": "^3.0.2"
 	}
 }

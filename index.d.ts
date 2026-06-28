@@ -114,4 +114,4 @@ createHtmlElement({
 */
 export default function createHtmlElement(options?: Options): string;
 
-export {HTMLAttributes} from 'stringify-attributes';
+export type {HTMLAttributes} from 'stringify-attributes';

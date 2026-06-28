@@ -107,3 +107,119 @@ test('throws on invalid child types', t => {
 		});
 	});
 });
+
+test('returns default element without arguments', t => {
+	t.is(
+		createHtmlElement(),
+		'<div></div>',
+	);
+});
+
+test('html and text are mutually exclusive', t => {
+	t.throws(() => {
+		createHtmlElement({
+			html: 'foo',
+			text: 'bar',
+		});
+	});
+});
+
+test('throws when children is not an array', t => {
+	t.throws(() => {
+		createHtmlElement({
+			children: 'not an array',
+		});
+	}, {instanceOf: TypeError});
+});
+
+test('void element ignores children without building or validating them', t => {
+	t.is(
+		createHtmlElement({
+			name: 'img',
+			children: [['nested']],
+		}),
+		'<img>',
+	);
+});
+
+test('renders nested children', t => {
+	t.is(
+		createHtmlElement({
+			name: 'ul',
+			children: [
+				{
+					name: 'li',
+					children: ['a'],
+				},
+				{
+					name: 'li',
+					text: 'b',
+				},
+			],
+		}),
+		'<ul><li>a</li><li>b</li></ul>',
+	);
+});
+
+test('renders empty children array', t => {
+	t.is(
+		createHtmlElement({children: []}),
+		'<div></div>',
+	);
+});
+
+test('does not escape html content', t => {
+	t.is(
+		createHtmlElement({html: '<em>unescaped</em> & raw'}),
+		'<div><em>unescaped</em> & raw</div>',
+	);
+});
+
+test('rejects tag names that would inject markup', t => {
+	t.throws(() => {
+		createHtmlElement({name: 'div><script>alert(1)</script><div'});
+	});
+
+	t.throws(() => {
+		createHtmlElement({name: 'div onload=alert(1)'});
+	});
+
+	t.throws(() => {
+		createHtmlElement({name: ''});
+	});
+
+	// The same validation protects nested children.
+	t.throws(() => {
+		createHtmlElement({
+			children: [
+				{name: '<script>'},
+			],
+		});
+	});
+});
+
+test('allows standard and custom element tag names', t => {
+	t.is(createHtmlElement({name: 'h1'}), '<h1></h1>');
+	t.is(createHtmlElement({name: 'my-element'}), '<my-element></my-element>');
+	t.is(createHtmlElement({name: 'my.element-foo'}), '<my.element-foo></my.element-foo>');
+	t.is(createHtmlElement({name: 'my-element_foo'}), '<my-element_foo></my-element_foo>');
+	t.is(
+		createHtmlElement({
+			children: [
+				{name: 'my-element_foo'},
+			],
+		}),
+		'<div><my-element_foo></my-element_foo></div>',
+	);
+});
+
+test('escapes attribute names and values', t => {
+	t.is(
+		createHtmlElement({
+			attributes: {
+				title: '"><script>alert(1)</script>',
+			},
+		}),
+		'<div title="&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;"></div>',
+	);
+});

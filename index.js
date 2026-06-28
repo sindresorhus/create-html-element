@@ -4,15 +4,20 @@ import {htmlEscape} from 'escape-goat';
 
 const voidHtmlTags = new Set(voidHtmlTagsArray);
 
-export default function createHtmlElement(
-	{
-		name = 'div',
-		attributes = {},
-		html,
-		text,
-		children,
-	} = {},
-) {
+// Matches a valid HTML tag name (a letter followed by letters, digits, hyphens, underscores, or periods).
+const tagNamePattern = /^[a-z][\w\-.]*$/iv;
+
+export default function createHtmlElement({
+	name = 'div',
+	attributes = {},
+	html,
+	text,
+	children,
+} = {}) {
+	if (!tagNamePattern.test(name)) {
+		throw new Error(`Invalid tag name: ${JSON.stringify(name)}`);
+	}
+
 	const hasHtml = html !== undefined;
 	const hasText = text !== undefined;
 	const hasChildren = children !== undefined;
@@ -23,6 +28,12 @@ export default function createHtmlElement(
 
 	if (hasChildren && !Array.isArray(children)) {
 		throw new TypeError('The `children` option must be an array');
+	}
+
+	const openingTag = `<${name}${stringifyAttributes(attributes)}>`;
+
+	if (voidHtmlTags.has(name)) {
+		return openingTag;
 	}
 
 	let content = '';
@@ -45,11 +56,5 @@ export default function createHtmlElement(
 		content = html;
 	}
 
-	let result = `<${name}${stringifyAttributes(attributes)}>`;
-
-	if (!voidHtmlTags.has(name)) {
-		result += `${content}</${name}>`;
-	}
-
-	return result;
+	return `${openingTag}${content}</${name}>`;
 }
